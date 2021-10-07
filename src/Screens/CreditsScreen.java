@@ -29,12 +29,12 @@ public class CreditsScreen extends Screen {
         // setup graphics on screen (background map, spritefont text)
         background = new TitleScreenMap();
         background.setAdjustCamera(false);
-        creditsLabel = new SpriteFont("Credits", 15, 35, "Times New Roman", 30, Color.white);
-        createdByLabel = new SpriteFont("Created by Alex Thimineur for Quinnipiac's SER225 Course.", 130, 140, "Times New Roman", 20, Color.white);
-        contributorsLabel = new SpriteFont("Thank you to QU Alumni Brian Carducci, Joseph White,\nand Alex Hutman for their contributions.", 60, 240, "Times New Roman",20, Color.white);
-        musicContributorLabel = new SpriteFont("Music: Guitalele's Happy Place by Stefan Kartenberg (c) copyright 2017 \nLicensed under a Creative Commons Attribution (3.0) license. \nhttp://dig.ccmixter.org/files/JeffSpeed68/56194 Ft: Kara Square (mindmapthat)", 130, 170, "Times New Roman", 15, Color.white);
-        soundEffectLabel = new SpriteFont ("Sound Effects: Bubble Sound by Mike Koenig", 130, 190, "Times New Roman", 15, Color.white);
-        returnInstructionsLabel = new SpriteFont("Press Enter to return to the menu", 20, 560, "Times New Roman", 30, Color.white);
+        creditsLabel = new SpriteFont("Credits", 15, 35, "Times New Roman", 30, Color.black);
+        createdByLabel = new SpriteFont("Created by Alex Thimineur for Quinnipiac's SER225 Course.", 125, 110, "Times New Roman", 20, Color.black);
+        contributorsLabel = new SpriteFont("Thank you to QU Alumni Brian Carducci, Joseph White,\nand Alex Hutman for their contributions.", 125, 230, "Times New Roman",20, Color.black);
+        musicContributorLabel = new SpriteFont("Music: Guitalele's Happy Place by Stefan Kartenberg (c) copyright 2017 \nLicensed under a Creative Commons Attribution (3.0) license. \nhttp://dig.ccmixter.org/files/JeffSpeed68/56194 Ft: Kara Square (mindmapthat)", 125, 140, "Times New Roman", 20, Color.black);
+        soundEffectLabel = new SpriteFont ("Sound Effects: Bubble Sound by Mike Koenig", 125, 300, "Times New Roman", 20, Color.black);
+        returnInstructionsLabel = new SpriteFont("Press Enter to return to the menu", 20, 560, "Times New Roman", 20, Color.black);
         keyLocker.lockKey(Key.ENTER);
     }
 
