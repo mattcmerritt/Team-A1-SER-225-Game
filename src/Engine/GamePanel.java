@@ -1,17 +1,21 @@
 package Engine;
 
 import GameObject.Rectangle;
+import Screens.MenuScreen;
 import Screens.PlayLevelScreen;
 import SpriteFont.SpriteFont;
 import Utils.Colors;
 
 import javax.swing.*;
 
+import Game.GameState;
 import Game.ScreenCoordinator;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /*
  * This is where the game loop starts
@@ -29,13 +33,40 @@ public class GamePanel extends JPanel {
 	private GraphicsHandler graphicsHandler;
 
 	private boolean doPaint = false;
-
+	
+	private int currentX, currentY;
+	;
 	/*
 	 * The JPanel and various important class instances are setup here
 	 */
 	public GamePanel() {
 		super();
 		this.setDoubleBuffered(true);
+		
+		this.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				currentX = (int) e.getX();
+				currentY = (int) e.getY();
+				
+				if (ScreenCoordinator.getGameState() == GameState.MENU) {
+					if (currentX >= 200 && currentX <= 372 && currentY <= 150 && currentY >= 130) {
+						ScreenCoordinator.setGameState(GameState.LEVEL);
+					}
+					else if (currentX >= 200 && currentX <= 425 && currentY <= 200 && currentY >= 180) {
+						ScreenCoordinator.setGameState(GameState.INSTRUCTIONS);
+					}
+					else if (currentX >= 200 && currentX <= 331 && currentY <= 250 && currentY >= 220) {
+						ScreenCoordinator.setGameState(GameState.CREDITS);
+					}
+				}
+				
+				else {
+					
+				}
+			}
+		});
 
 		// attaches Keyboard class's keyListener to this JPanel
 		this.addKeyListener(Keyboard.getKeyListener());
