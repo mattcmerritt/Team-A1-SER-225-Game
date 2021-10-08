@@ -35,7 +35,6 @@ public class GamePanel extends JPanel {
 	private boolean doPaint = false;
 	
 	private int currentX, currentY;
-	//This is private intS
 	;
 	/*
 	 * The JPanel and various important class instances are setup here
