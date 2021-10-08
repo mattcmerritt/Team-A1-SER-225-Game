@@ -34,7 +34,7 @@ public class CreditsScreen extends Screen {
         contributorsLabel = new SpriteFont("Thank you to QU Alumni Brian Carducci, Joseph White,\nand Alex Hutman for their contributions.", 60, 240, "Times New Roman",20, Color.white);
         musicContributorLabel = new SpriteFont("Music: Guitalele's Happy Place by Stefan Kartenberg (c) copyright 2017 \nLicensed under a Creative Commons Attribution (3.0) license. \nhttp://dig.ccmixter.org/files/JeffSpeed68/56194 Ft: Kara Square (mindmapthat)", 130, 170, "Times New Roman", 15, Color.white);
         soundEffectLabel = new SpriteFont ("Sound Effects: Bubble Sound by Mike Koenig", 130, 190, "Times New Roman", 15, Color.white);
-        returnInstructionsLabel = new SpriteFont("Press Enter to return to the menu", 20, 560, "Times New Roman", 30, Color.white);
+        returnInstructionsLabel = new SpriteFont("Click to return to menu", 20, 560, "Times New Roman", 30, Color.white);
         keyLocker.lockKey(Key.ENTER);
     }
 
