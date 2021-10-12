@@ -63,11 +63,11 @@ public class GamePanel extends JPanel {
 					}
 				} else if(ScreenCoordinator.getGameState() == GameState.INSTRUCTIONS) {
 					
-					if(currentX >= 20 && currentY >= 520 && currentX <= 300 && currentY <= 600) {
+					if(currentX >= 500 && currentY >= 520 && currentX <= 780 && currentY <= 600) {
 						ScreenCoordinator.setGameState(GameState.MENU);
 					} 
 				}else if(ScreenCoordinator.getGameState()== GameState.CREDITS) {
-					if(currentX >= 20 && currentY >= 520 && currentX <= 300 && currentY <= 600) {
+					if(currentX >= 500 && currentY >= 520 && currentX <= 780 && currentY <= 600) {
 						ScreenCoordinator.setGameState(GameState.MENU);
 					} 
 				}
