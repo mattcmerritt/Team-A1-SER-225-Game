@@ -201,11 +201,9 @@ public abstract class Player extends GameObject {
 		if (Keyboard.isKeyDown(MOVE_RIGHT_KEY) && x < map.getEndBoundX() -50 || Keyboard.isKeyDown(RIGHT_ALT) && x < map.getEndBoundX() -50) {
 			moveAmountX += walkSpeed;
 			facingDirection = Direction.RIGHT;
-		} else if (Keyboard.isKeyUp(MOVE_LEFT_KEY) && Keyboard.isKeyUp(MOVE_RIGHT_KEY)) {
+		// if none of the movement buttons are pressed, return the player to a standing state
+		} else if ((Keyboard.isKeyUp(MOVE_LEFT_KEY) && Keyboard.isKeyUp(LEFT_ALT)) && (Keyboard.isKeyUp(MOVE_RIGHT_KEY) && Keyboard.isKeyUp(RIGHT_ALT))) {
 			playerState = PlayerState.STANDING;
-		} else if (Keyboard.isKeyDown(LEFT_ALT) && Keyboard.isKeyDown(RIGHT_ALT)) {
-			moveAmountX += walkSpeed;
-			facingDirection = Direction.RIGHT;
 		}
 		// if player is in air (currently in a jump) and has more jumpForce, continue
 		// sending player upwards
