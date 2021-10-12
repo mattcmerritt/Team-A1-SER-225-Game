@@ -35,6 +35,7 @@ public class GamePanel extends JPanel {
 	private boolean doPaint = false;
 	
 	private int currentX, currentY;
+	//this is a change
 	;
 	/*
 	 * The JPanel and various important class instances are setup here
@@ -60,10 +61,15 @@ public class GamePanel extends JPanel {
 					else if (currentX >= 200 && currentX <= 331 && currentY <= 250 && currentY >= 220) {
 						ScreenCoordinator.setGameState(GameState.CREDITS);
 					}
-				}
-				
-				else {
+				} else if(ScreenCoordinator.getGameState() == GameState.INSTRUCTIONS) {
 					
+					if(currentX >= 500 && currentY >= 520 && currentX <= 780 && currentY <= 600) {
+						ScreenCoordinator.setGameState(GameState.MENU);
+					} 
+				}else if(ScreenCoordinator.getGameState()== GameState.CREDITS) {
+					if(currentX >= 500 && currentY >= 520 && currentX <= 780 && currentY <= 600) {
+						ScreenCoordinator.setGameState(GameState.MENU);
+					} 
 				}
 			}
 		});

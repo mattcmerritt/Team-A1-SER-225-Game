@@ -19,6 +19,7 @@ public class CreditsScreen extends Screen {
     protected SpriteFont contributorsLabel;
     protected SpriteFont returnInstructionsLabel;
     protected SpriteFont musicContributorLabel, soundEffectLabel;
+    protected SpriteFont returnbutton;
 
     public CreditsScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
@@ -29,12 +30,16 @@ public class CreditsScreen extends Screen {
         // setup graphics on screen (background map, spritefont text)
         background = new TitleScreenMap();
         background.setAdjustCamera(false);
+
+        returnInstructionsLabel = new SpriteFont("Click to return to menu", 20, 560, "Times New Roman", 30, Color.white);
+
         creditsLabel = new SpriteFont("Credits", 15, 35, "Times New Roman", 30, Color.black);
         createdByLabel = new SpriteFont("Created by Alex Thimineur for Quinnipiac's SER225 Course.", 125, 110, "Times New Roman", 20, Color.black);
         contributorsLabel = new SpriteFont("Thank you to QU Alumni Brian Carducci, Joseph White,\nand Alex Hutman for their contributions.", 125, 230, "Times New Roman",20, Color.black);
         musicContributorLabel = new SpriteFont("Music: Guitalele's Happy Place by Stefan Kartenberg (c) copyright 2017 \nLicensed under a Creative Commons Attribution (3.0) license. \nhttp://dig.ccmixter.org/files/JeffSpeed68/56194 Ft: Kara Square (mindmapthat)", 125, 140, "Times New Roman", 20, Color.black);
         soundEffectLabel = new SpriteFont ("Sound Effects: Bubble Sound by Mike Koenig", 125, 300, "Times New Roman", 20, Color.black);
-        returnInstructionsLabel = new SpriteFont("Press Enter to return to the menu", 20, 560, "Times New Roman", 20, Color.black);
+        returnInstructionsLabel = new SpriteFont("Press Enter to return to the menu", 20, 560, "Times New Roman", 30, Color.black);
+        returnbutton = new SpriteFont("Click to return to menu", 500, 560, "Times New Roman", 30, Color.black);
         keyLocker.lockKey(Key.ENTER);
     }
 
@@ -59,5 +64,6 @@ public class CreditsScreen extends Screen {
         musicContributorLabel.drawWithParsedNewLines(graphicsHandler);
         soundEffectLabel.drawWithParsedNewLines(graphicsHandler);
         returnInstructionsLabel.draw(graphicsHandler);
+        returnbutton.draw(graphicsHandler);
     }
 }
