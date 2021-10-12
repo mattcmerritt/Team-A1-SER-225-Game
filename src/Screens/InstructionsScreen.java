@@ -15,7 +15,7 @@ public class InstructionsScreen extends Screen {
     protected Map background;
     protected KeyLocker keyLocker = new KeyLocker();
     protected SpriteFont instructionsLabel;
-    protected SpriteFont beginningSentenceLabel;
+    //protected SpriteFont beginningSentenceLabel;
     protected SpriteFont actualInstructionsLabel;
     protected SpriteFont returnInstructionsLabel;
 
@@ -28,12 +28,12 @@ public class InstructionsScreen extends Screen {
         // setup graphics on screen (background map, spritefont text)
         background = new TitleScreenMap();
         background.setAdjustCamera(false);
-        instructionsLabel = new SpriteFont("Instructions", 15, 35, "Times New Roman", 30, Color.white);
-        beginningSentenceLabel = new SpriteFont("The instructions for this game are:", 130, 140, "Times New Roman", 20, Color.white);
-        actualInstructionsLabel = new SpriteFont("Enter is for menu selection \nThe Up arrow key and/or W is for Jumping \nThe Down arrow key and/or S is for Ducking"
-        		+ "\nThe Left arrow key and/or A is for moving left \nThe Right arrow key and/or D is for moving right "
-            + "\nSpace is used for attack", 60, 220, "Times New Roman",20, Color.white);
-        returnInstructionsLabel = new SpriteFont("Press Space to return to the menu", 20, 560, "Times New Roman", 30, Color.white);
+        instructionsLabel = new SpriteFont("Instructions", 15, 35, "Times New Roman", 30, Color.black);
+       // beginningSentenceLabel = new SpriteFont("The instructions for this game are:", 130, 140, "Times New Roman", 20, Color.white);
+        actualInstructionsLabel = new SpriteFont("Goal: reach the ball of yarn at the right of the level \nwithout touching any enemies or falling off the map \n\nControls:\nUse the up arrow key and/or W key to jump \nUse the down arrow key and/or S key to duck"
+        		+ "\nUse the left arrow key and/or A key to move left \nUse the right arrow key and/or D key to move right "
+            + "\nWalk on the fish to gain an attack power \nUse the spacebar to attack the dog and mouse enemies", 60, 190, "Times New Roman",20, Color.black);
+        returnInstructionsLabel = new SpriteFont("Press Enter to return to the menu", 20, 560, "Times New Roman", 30, Color.black);
         keyLocker.lockKey(Key.ENTER);
     }
 
@@ -44,7 +44,7 @@ public class InstructionsScreen extends Screen {
             keyLocker.unlockKey(Key.ENTER);
         }
 
-        // if space is pressed, go back to main menu
+        // if enter is pressed, go back to main menu
         if (!keyLocker.isKeyLocked(Key.ENTER) && Keyboard.isKeyDown(Key.ENTER)) {
             screenCoordinator.setGameState(GameState.MENU);
         }
@@ -53,7 +53,7 @@ public class InstructionsScreen extends Screen {
     public void draw(GraphicsHandler graphicsHandler) {
         background.draw(graphicsHandler);
         instructionsLabel.draw(graphicsHandler);
-        beginningSentenceLabel.draw(graphicsHandler);
+        //beginningSentenceLabel.draw(graphicsHandler);
         actualInstructionsLabel.drawWithParsedNewLines(graphicsHandler);
         returnInstructionsLabel.draw(graphicsHandler);
     }
