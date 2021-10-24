@@ -177,11 +177,11 @@ public abstract class Player extends GameObject {
 		}
 
 		// if spacebar pressed, shoot fireball
-		else if (Keyboard.isKeyDown(SHOOT_KEY)) {
+		else if (Keyboard.isKeyDown(SHOOT_KEY) && hasPowerUp) {
 			playerState = PlayerState.SHOOTING;
 		}
 
-		if (Keyboard.isKeyDown(SHOOT_KEY)) {
+		if (Keyboard.isKeyDown(SHOOT_KEY) && hasPowerUp) {
 			keyLocker.lockKey(SHOOT_KEY);
 			playerState = PlayerState.SHOOTING;
 		}
