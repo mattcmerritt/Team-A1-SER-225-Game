@@ -458,7 +458,7 @@ public abstract class Player extends GameObject {
 	public void powerUp(MapEntity mapEntity) {
 		if (mapEntity instanceof MapTile) {
 			MapTile mapTile = (MapTile) mapEntity;
-			if (mapTile.getTileType() == TileType.POWER_UP) {
+			if (mapTile.getTileType() == TileType.POWER_UP && !hasPowerUp) {
 				hasPowerUp = true;
 				makeSound(powerUp);
 			}
