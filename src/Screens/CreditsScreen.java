@@ -66,4 +66,18 @@ public class CreditsScreen extends Screen {
         returnInstructionsLabel.draw(graphicsHandler);
         returnbutton.draw(graphicsHandler);
     }
+    
+    // additional unused method
+  	@Override
+  	public void selectMenuOption(int option)
+  	{
+  		// do nothing
+  	}
+  	
+  	// additional unused method
+   	@Override
+   	public void deselectMenuOption(int option)
+   	{
+   		// do nothing
+   	}
 }

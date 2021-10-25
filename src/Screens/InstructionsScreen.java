@@ -61,4 +61,18 @@ public class InstructionsScreen extends Screen {
         returnInstructionsLabel.draw(graphicsHandler);
         returnbutton.draw(graphicsHandler);
     }
+    
+    // additional method to allow the screen coordinator to send mouse information to the current screen
+  	@Override
+  	public void selectMenuOption(int option)
+  	{
+  		// do nothing
+  	}
+  	
+  	// additional unused method
+   	@Override
+   	public void deselectMenuOption(int option)
+   	{
+   		// do nothing
+   	}
 }

@@ -29,4 +29,18 @@ public class LevelClearedScreen extends Screen {
         graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
         winMessage.draw(graphicsHandler);
     }
+    
+    // additional unused method
+  	@Override
+  	public void selectMenuOption(int option)
+  	{
+  		// do nothing
+  	}
+  	
+  	// additional unused method
+   	@Override
+   	public void deselectMenuOption(int option)
+   	{
+   		// do nothing
+   	}
 }

@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
 
 /*
@@ -35,8 +36,7 @@ public class GamePanel extends JPanel {
 	private boolean doPaint = false;
 	
 	private int currentX, currentY;
-	//this is a change
-	;
+
 	/*
 	 * The JPanel and various important class instances are setup here
 	 */
@@ -61,14 +61,52 @@ public class GamePanel extends JPanel {
 					else if (currentX >= 200 && currentX <= 331 && currentY <= 250 && currentY >= 220) {
 						ScreenCoordinator.setGameState(GameState.CREDITS);
 					}
-				} else if(ScreenCoordinator.getGameState() == GameState.INSTRUCTIONS) {
-					
+				} 
+				else if(ScreenCoordinator.getGameState() == GameState.INSTRUCTIONS) {
 					if(currentX >= 500 && currentY >= 520 && currentX <= 780 && currentY <= 600) {
 						ScreenCoordinator.setGameState(GameState.MENU);
 					} 
-				}else if(ScreenCoordinator.getGameState()== GameState.CREDITS) {
+				}
+				else if(ScreenCoordinator.getGameState()== GameState.CREDITS) {
 					if(currentX >= 500 && currentY >= 520 && currentX <= 780 && currentY <= 600) {
 						ScreenCoordinator.setGameState(GameState.MENU);
+					} 
+				}
+			}
+		});
+		
+		this.addMouseMotionListener(new MouseMotionAdapter() {
+			
+			@Override
+			public void mouseMoved(MouseEvent e) {	
+				currentX = (int) e.getX();
+				currentY = (int) e.getY();
+				
+				if (ScreenCoordinator.getGameState() == GameState.MENU) {
+					if (currentX >= 200 && currentX <= 372 && currentY <= 150 && currentY >= 130) {
+						screenManager.selectMenuOption(0);
+						update();
+						repaint();
+					}
+					else if (currentX >= 200 && currentX <= 425 && currentY <= 200 && currentY >= 180) {
+						screenManager.selectMenuOption(1);
+						update();
+						repaint();
+					}
+					else if (currentX >= 200 && currentX <= 331 && currentY <= 250 && currentY >= 220) {
+						screenManager.selectMenuOption(2);
+						update();
+						repaint();
+					}
+				} 
+				else if(ScreenCoordinator.getGameState() == GameState.INSTRUCTIONS) {
+					if(currentX >= 500 && currentY >= 520 && currentX <= 780 && currentY <= 600) {
+						//ScreenCoordinator.setGameState(GameState.MENU);
+					} 
+				}
+				else if(ScreenCoordinator.getGameState()== GameState.CREDITS) {
+					if(currentX >= 500 && currentY >= 520 && currentX <= 780 && currentY <= 600) {
+						//ScreenCoordinator.setGameState(GameState.MENU);
 					} 
 				}
 			}

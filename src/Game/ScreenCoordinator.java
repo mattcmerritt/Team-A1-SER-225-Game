@@ -69,4 +69,18 @@ public class ScreenCoordinator extends Screen {
 		// call the draw method for the currentScreen
 		currentScreen.draw(graphicsHandler);
 	}
+	
+	// relaying information from screenManager to the actual screen
+	@Override
+	public void selectMenuOption(int option)
+	{
+		currentScreen.selectMenuOption(option);
+	}
+	
+	// additional unused method
+	@Override
+	public void deselectMenuOption(int option)
+	{
+		// do nothing
+	}
 }
