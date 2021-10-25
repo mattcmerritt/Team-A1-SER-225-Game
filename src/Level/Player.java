@@ -381,7 +381,7 @@ public abstract class Player extends GameObject {
 
 				// define where fireball will spawn on the map (y location) relative to dinosaur
 				// enemy's location
-				int fireballY = Math.round(getY()) + 15;
+				int fireballY = Math.round(getY()) + 10;
 
 				// create Fireball
 				FriendlyFire fireball = new FriendlyFire(new Point(fireballX, fireballY), movementSpeed, 1000);
