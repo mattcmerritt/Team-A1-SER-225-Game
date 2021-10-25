@@ -19,7 +19,9 @@ public class CreditsScreen extends Screen {
     protected SpriteFont contributorsLabel;
     protected SpriteFont returnInstructionsLabel;
     protected SpriteFont musicContributorLabel, soundEffectLabel;
-    protected SpriteFont returnbutton;
+    protected SpriteFont returnButton;
+    
+    protected boolean returnButtonSelected;
 
     public CreditsScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
@@ -39,12 +41,22 @@ public class CreditsScreen extends Screen {
         musicContributorLabel = new SpriteFont("Music: Guitalele's Happy Place by Stefan Kartenberg (c) copyright 2017 \nLicensed under a Creative Commons Attribution (3.0) license. \nhttp://dig.ccmixter.org/files/JeffSpeed68/56194 Ft: Kara Square (mindmapthat)", 125, 140, "Times New Roman", 20, Color.black);
         soundEffectLabel = new SpriteFont ("Sound Effects: Bubble Sound by Mike Koenig", 125, 300, "Times New Roman", 20, Color.black);
         returnInstructionsLabel = new SpriteFont("Press Enter to return to the menu", 20, 560, "Times New Roman", 30, Color.black);
-        returnbutton = new SpriteFont("Click to return to menu", 500, 560, "Times New Roman", 30, Color.black);
+        returnButton = new SpriteFont("RETURN TO MENU", 500, 560, "Comic Sans", 30, new Color(49, 207, 240));
+        returnButton.setOutlineColor(Color.black);
+        returnButton.setOutlineThickness(3);
         keyLocker.lockKey(Key.ENTER);
     }
 
     public void update() {
         background.update(null);
+        
+        // changing the color of the button when hovered
+        if (returnButtonSelected) {
+        	returnButton.setColor(new Color(255, 215, 0));
+        }
+        else {
+        	returnButton.setColor(new Color(49,207,240));
+        }
 
         if (Keyboard.isKeyUp(Key.ENTER)) {
             keyLocker.unlockKey(Key.ENTER);
@@ -64,20 +76,24 @@ public class CreditsScreen extends Screen {
         musicContributorLabel.drawWithParsedNewLines(graphicsHandler);
         soundEffectLabel.drawWithParsedNewLines(graphicsHandler);
         returnInstructionsLabel.draw(graphicsHandler);
-        returnbutton.draw(graphicsHandler);
+        returnButton.draw(graphicsHandler);
     }
     
-    // additional unused method
+    // receive a selection from the mouse input
   	@Override
   	public void selectMenuOption(int option)
   	{
-  		// do nothing
+  		if (option == 0) {
+  			returnButtonSelected = true;
+  		}
   	}
   	
-  	// additional unused method
+  	// remove highlight when the option is not hovered anymore
    	@Override
    	public void deselectMenuOption(int option)
    	{
-   		// do nothing
+   		if (option == 0) {
+   			returnButtonSelected = false;
+   		}
    	}
 }

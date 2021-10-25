@@ -63,12 +63,12 @@ public class GamePanel extends JPanel {
 					}
 				} 
 				else if(ScreenCoordinator.getGameState() == GameState.INSTRUCTIONS) {
-					if(currentX >= 500 && currentY >= 520 && currentX <= 780 && currentY <= 600) {
+					if(currentX >= 500 && currentY >= 520 && currentX <= 780 && currentY <= 560) {
 						ScreenCoordinator.setGameState(GameState.MENU);
 					} 
 				}
 				else if(ScreenCoordinator.getGameState()== GameState.CREDITS) {
-					if(currentX >= 500 && currentY >= 520 && currentX <= 780 && currentY <= 600) {
+					if(currentX >= 500 && currentY >= 520 && currentX <= 780 && currentY <= 560) {
 						ScreenCoordinator.setGameState(GameState.MENU);
 					} 
 				}
@@ -85,28 +85,28 @@ public class GamePanel extends JPanel {
 				if (ScreenCoordinator.getGameState() == GameState.MENU) {
 					if (currentX >= 200 && currentX <= 372 && currentY <= 150 && currentY >= 130) {
 						screenManager.selectMenuOption(0);
-						update();
-						repaint();
 					}
 					else if (currentX >= 200 && currentX <= 425 && currentY <= 200 && currentY >= 180) {
 						screenManager.selectMenuOption(1);
-						update();
-						repaint();
 					}
 					else if (currentX >= 200 && currentX <= 331 && currentY <= 250 && currentY >= 220) {
 						screenManager.selectMenuOption(2);
-						update();
-						repaint();
 					}
 				} 
-				else if(ScreenCoordinator.getGameState() == GameState.INSTRUCTIONS) {
-					if(currentX >= 500 && currentY >= 520 && currentX <= 780 && currentY <= 600) {
-						//ScreenCoordinator.setGameState(GameState.MENU);
+				else if (ScreenCoordinator.getGameState() == GameState.INSTRUCTIONS) {
+					if (currentX >= 500 && currentY >= 520 && currentX <= 780 && currentY <= 560) {
+						screenManager.selectMenuOption(0);
 					} 
+					else {
+						screenManager.deselectMenuOption(0);
+					}
 				}
-				else if(ScreenCoordinator.getGameState()== GameState.CREDITS) {
-					if(currentX >= 500 && currentY >= 520 && currentX <= 780 && currentY <= 600) {
-						//ScreenCoordinator.setGameState(GameState.MENU);
+				else if (ScreenCoordinator.getGameState() == GameState.CREDITS) {
+					if (currentX >= 500 && currentY >= 520 && currentX <= 780 && currentY <= 560) {
+						screenManager.selectMenuOption(0);
+					} 
+					else {
+						screenManager.deselectMenuOption(0);
 					} 
 				}
 			}

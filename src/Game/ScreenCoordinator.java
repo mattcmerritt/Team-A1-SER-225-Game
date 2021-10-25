@@ -77,10 +77,10 @@ public class ScreenCoordinator extends Screen {
 		currentScreen.selectMenuOption(option);
 	}
 	
-	// additional unused method
+	// relaying information from screenManager to the actual screen
 	@Override
 	public void deselectMenuOption(int option)
 	{
-		// do nothing
+		currentScreen.deselectMenuOption(option);
 	}
 }
