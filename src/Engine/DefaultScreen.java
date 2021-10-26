@@ -16,4 +16,10 @@ public class DefaultScreen extends Screen {
 
     @Override
     public void draw(GraphicsHandler graphicsHandler) { }
+    
+    @Override
+  	public void selectMenuOption(int option) { }
+    
+    @Override
+  	public void deselectMenuOption(int option) { }
 }
