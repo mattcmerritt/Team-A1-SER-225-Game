@@ -11,7 +11,6 @@ import Utils.AirGroundState;
 import Utils.Direction;
 import Utils.Point;
 import Utils.Stopwatch;
-
 import java.util.HashMap;
 
 // This class is for the green dinosaur enemy that shoots fireballs
@@ -37,7 +36,7 @@ public class DinosaurEnemy extends Enemy {
     protected DinosaurState previousDinosaurState;
 
     public DinosaurEnemy(Point startLocation, Point endLocation, Direction facingDirection) {
-        super(startLocation.x, startLocation.y, new SpriteSheet(ImageLoader.load("DinosaurEnemy.png"), 14, 17), "WALK_RIGHT");
+        super(startLocation.x, startLocation.y, new SpriteSheet(ImageLoader.load("squirrelEnemy.png"), 14, 17), "WALK_RIGHT"); //DinosaurEnemy, 14, 17
         this.startLocation = startLocation;
         this.endLocation = endLocation;
         this.startFacingDirection = facingDirection;
@@ -147,12 +146,12 @@ public class DinosaurEnemy extends Enemy {
     public HashMap<String, Frame[]> getAnimations(SpriteSheet spriteSheet) {
         return new HashMap<String, Frame[]>() {{
             put("WALK_LEFT", new Frame[]{
-                    new FrameBuilder(spriteSheet.getSprite(0, 0), 200)
-                            .withScale(3)
+                    new FrameBuilder(spriteSheet.getSprite(0, 0), 200) //0,0
+                            .withScale(3) //3
                             .withBounds(4, 2, 5, 13)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(0, 1), 200)
-                            .withScale(3)
+                            .withScale(3)//3
                             .withBounds(4, 2, 5, 13)
                             .build()
             });
