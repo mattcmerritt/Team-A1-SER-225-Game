@@ -45,4 +45,19 @@ public class ScreenManager {
     public static Rectangle getScreenBounds() {
         return screenBounds;
     }
+    
+    // allowing the screen manager to communicate mouse input information to the panel
+	// highlight a hovered option
+	public void selectMenuOption(int option)
+	{
+		currentScreen.selectMenuOption(option);
+		currentScreen.update();
+	}
+	
+	// remove highlight from an option that is no longer hovered
+	public void deselectMenuOption(int option)
+	{
+		currentScreen.deselectMenuOption(option);
+		currentScreen.update();
+	}
 }

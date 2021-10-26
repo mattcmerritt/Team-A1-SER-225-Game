@@ -150,6 +150,20 @@ public class PlayLevelScreen extends Screen implements PlayerListener {
 			graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(0, 0, 0, 0));
     	}
     }
+    
+    // additional unused method
+  	@Override
+  	public void selectMenuOption(int option)
+  	{
+  		// do nothing
+  	}
+  	
+  	// additional unused method
+   	@Override
+   	public void deselectMenuOption(int option)
+   	{
+   		// do nothing
+   	}
 
     public PlayLevelScreenState getPlayLevelScreenState() {
         return playLevelScreenState;
