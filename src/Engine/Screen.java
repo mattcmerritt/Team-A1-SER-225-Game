@@ -7,4 +7,7 @@ public abstract class Screen {
     public abstract void initialize();
     public abstract void update();
     public abstract void draw(GraphicsHandler graphicsHandler);
+    
+    public abstract void selectMenuOption(int option);
+    public abstract void deselectMenuOption(int option);
 }

@@ -21,7 +21,7 @@ public class FriendlyFire extends Enemy {
     private Stopwatch existenceTimerFriend = new Stopwatch();
 
     public FriendlyFire(Point location, float movementSpeed, int existenceTime) {
-        super(location.x, location.y, new SpriteSheet(ImageLoader.load("ForceField.png"), 14, 14), "DEFAULT");
+        super(location.x, location.y, new SpriteSheet(ImageLoader.load("forcefield.png"), 14, 14), "DEFAULT");
         this.movementSpeed = movementSpeed;
 
         // how long the fireball will exist for before disappearing
