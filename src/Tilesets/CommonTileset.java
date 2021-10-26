@@ -159,7 +159,7 @@ public class CommonTileset extends Tileset {
         };
 
         MapTileBuilder purpleFlowerTile = new MapTileBuilder(purpleFlowerFrames)
-        		.withTileType(TileType.POWER_UP);
+        		.withTileType(TileType.PASSABLE);
 
         mapTiles.add(purpleFlowerTile);
 
@@ -224,6 +224,18 @@ public class CommonTileset extends Tileset {
                 .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(greyRockTile);
+        
+        // fish
+        Frame[] fishFrame = new Frame[] {
+        		new FrameBuilder(getSubImage(3, 3), 0)
+        				 .withScale(tileScale)
+        				 .build(),
+        };
+        
+        MapTileBuilder fishTile = new MapTileBuilder(fishFrame)
+        		.withTileType(TileType.POWER_UP);
+        
+        mapTiles.add(fishTile);
 
         return mapTiles;
     }
