@@ -70,9 +70,9 @@ public class Enemy extends MapEntity {
 		super.update();
 		if (intersects(player)) {
 			touchedPlayer(player);
-		}
-		if (player.currentFireball != null) {
-			if (intersects(player.currentFireball.getBounds())) {
+		} else if (player.currentFireball != null) {
+			if (intersects(player.getFire())) {
+				makeSound(vaporizedSound);
 //				THIS ALWAYS RETURNS TRUE
 				this.setMapEntityStatus(MapEntityStatus.REMOVED);
 			}
