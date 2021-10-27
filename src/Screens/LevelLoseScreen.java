@@ -46,4 +46,18 @@ public class LevelLoseScreen extends Screen {
         loseMessage.draw(graphicsHandler);
         instructions.draw(graphicsHandler);
     }
+    
+    // additional unused method
+  	@Override
+  	public void selectMenuOption(int option)
+  	{
+  		// do nothing
+  	}
+  	
+  	// additional unused method
+   	@Override
+   	public void deselectMenuOption(int option)
+   	{
+   		// do nothing
+   	}
 }

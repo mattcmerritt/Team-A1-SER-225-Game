@@ -18,7 +18,9 @@ public class InstructionsScreen extends Screen {
     //protected SpriteFont beginningSentenceLabel;
     protected SpriteFont actualInstructionsLabel;
     protected SpriteFont returnInstructionsLabel;
-    protected SpriteFont returnbutton;
+    protected SpriteFont returnButton;
+    
+    protected boolean returnButtonSelected;
 
     public InstructionsScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
@@ -36,12 +38,22 @@ public class InstructionsScreen extends Screen {
         		+ "\nUse the left arrow key and/or A key to move left \nUse the right arrow key and/or D key to move right "
             + "\nWalk on the fish to gain an attack power \nUse the spacebar to attack the dog and mouse enemies", 60, 190, "Times New Roman",20, Color.black);
         returnInstructionsLabel = new SpriteFont("Press Enter to return to the menu", 20, 560, "Times New Roman", 30, Color.black);
-        returnbutton = new SpriteFont("Click to return to menu", 500, 560, "Times New Roman", 30, Color.black);
+        returnButton = new SpriteFont("RETURN TO MENU", 500, 560, "Comic Sans", 30, new Color(49, 207, 240));
+        returnButton.setOutlineColor(Color.black);
+        returnButton.setOutlineThickness(3);
         keyLocker.lockKey(Key.ENTER);
     }
 
     public void update() {
         background.update(null);
+        
+        // changing the color of the button when hovered
+        if (returnButtonSelected) {
+        	returnButton.setColor(new Color(255, 215, 0));
+        }
+        else {
+        	returnButton.setColor(new Color(49,207,240));
+        }
 
         if (Keyboard.isKeyUp(Key.ENTER)) {
             keyLocker.unlockKey(Key.ENTER);
@@ -59,6 +71,24 @@ public class InstructionsScreen extends Screen {
         //beginningSentenceLabel.draw(graphicsHandler);
         actualInstructionsLabel.drawWithParsedNewLines(graphicsHandler);
         returnInstructionsLabel.draw(graphicsHandler);
-        returnbutton.draw(graphicsHandler);
+        returnButton.draw(graphicsHandler);
     }
+    
+    // receive a selection from the mouse input
+  	@Override
+  	public void selectMenuOption(int option)
+  	{
+  		if (option == 0) {
+  			returnButtonSelected = true;
+  		}
+  	}
+  	
+  	// remove highlight when the option is not hovered anymore
+   	@Override
+   	public void deselectMenuOption(int option)
+   	{
+   		if (option == 0) {
+   			returnButtonSelected = false;
+   		}
+   	}
 }

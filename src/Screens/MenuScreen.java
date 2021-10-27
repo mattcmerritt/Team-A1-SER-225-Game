@@ -97,8 +97,8 @@ public class MenuScreen extends Screen {
                 screenCoordinator.setGameState(GameState.LEVEL);
             }
             else if(menuItemSelected == 1) {
-                	screenCoordinator.setGameState(GameState.INSTRUCTIONS);
-                }
+            	screenCoordinator.setGameState(GameState.INSTRUCTIONS);
+            }
             else if (menuItemSelected == 2) {
                 screenCoordinator.setGameState(GameState.CREDITS);
             }
@@ -116,4 +116,21 @@ public class MenuScreen extends Screen {
     public int getMenuItemSelected() {
         return menuItemSelected;
     }
+    
+    // receive a selection from the mouse input
+  	@Override
+  	public void selectMenuOption(int option)
+  	{
+  		if (option >= 0 && option < 3)
+  		{
+  			currentMenuItemHovered = option;
+  		}
+  	}
+  	
+  	// additional unused method
+   	@Override
+   	public void deselectMenuOption(int option)
+   	{
+   		// do nothing
+   	}
 }

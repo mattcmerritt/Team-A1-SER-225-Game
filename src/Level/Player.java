@@ -177,11 +177,11 @@ public abstract class Player extends GameObject {
 		}
 
 		// if spacebar pressed, shoot fireball
-		else if (Keyboard.isKeyDown(SHOOT_KEY)) {
+		else if (Keyboard.isKeyDown(SHOOT_KEY) && hasPowerUp) {
 			playerState = PlayerState.SHOOTING;
 		}
 
-		if (Keyboard.isKeyDown(SHOOT_KEY)) {
+		if (Keyboard.isKeyDown(SHOOT_KEY) && hasPowerUp) {
 			keyLocker.lockKey(SHOOT_KEY);
 			playerState = PlayerState.SHOOTING;
 		}
@@ -260,7 +260,7 @@ public abstract class Player extends GameObject {
 		}
 
 		// if shoot key is pressed, enter SHOOTING state
-		if (Keyboard.isKeyDown(SHOOT_KEY)) {
+		if (Keyboard.isKeyDown(SHOOT_KEY) && hasPowerUp) {
 			keyLocker.lockKey(SHOOT_KEY);
 			playerState = PlayerState.SHOOTING;
 		}
@@ -361,7 +361,7 @@ public abstract class Player extends GameObject {
 
 	protected void playerShooting() {
 
-		if (playerState == PlayerState.SHOOTING) {
+		if (playerState == PlayerState.SHOOTING && hasPowerUp) {
 			if (previousPlayerState == PlayerState.WALKING || previousPlayerState == PlayerState.STANDING) {
 				currentAnimationName = facingDirection == Direction.RIGHT ? "SHOOT_RIGHT" : "SHOOT_LEFT";
 			} else {
@@ -458,7 +458,7 @@ public abstract class Player extends GameObject {
 	public void powerUp(MapEntity mapEntity) {
 		if (mapEntity instanceof MapTile) {
 			MapTile mapTile = (MapTile) mapEntity;
-			if (mapTile.getTileType() == TileType.POWER_UP) {
+			if (mapTile.getTileType() == TileType.POWER_UP && !hasPowerUp) {
 				hasPowerUp = true;
 				makeSound(powerUp);
 			}

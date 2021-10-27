@@ -25,7 +25,7 @@ public class BugEnemy extends Enemy {
     private AirGroundState airGroundState;
 
     public BugEnemy(Point location, Direction facingDirection) {
-        super(location.x, location.y, new SpriteSheet(ImageLoader.load("BugEnemy.png"), 24, 15), "WALK_LEFT");
+        super(location.x, location.y, new SpriteSheet(ImageLoader.load("dogEnemy.png"), 24, 15), "WALK_LEFT");
         this.startFacingDirection = facingDirection;
         this.initialize();
     }
@@ -99,23 +99,23 @@ public class BugEnemy extends Enemy {
         return new HashMap<String, Frame[]>() {{
             put("WALK_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0), 100)
-                            .withScale(2)
+                            .withScale(3) //2
                             .withBounds(6, 6, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(0, 1), 100)
-                            .withScale(2)
+                            .withScale(3) //2
                             .withBounds(6, 6, 12, 7)
                             .build()
             });
 
             put("WALK_RIGHT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0), 100)
-                            .withScale(2)
+                            .withScale(3) //2
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .withBounds(6, 6, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(0, 1), 100)
-                            .withScale(2)
+                            .withScale(3) //2
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .withBounds(6, 6, 12, 7)
                             .build()
