@@ -120,6 +120,11 @@ public abstract class Player extends GameObject {
 		else if (levelState == LevelState.PLAYER_DEAD) {
 			updatePlayerDead();
 		}
+		
+		// remove players fireball if it expires
+		if (currentFireball != null && currentFireball.getMapEntityStatus() == MapEntityStatus.REMOVED) {
+			currentFireball = null;
+		}
 	}
 
 	// add gravity to player, which is a downward force
