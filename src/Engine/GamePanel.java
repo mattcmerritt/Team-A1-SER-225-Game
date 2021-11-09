@@ -40,7 +40,7 @@ public class GamePanel extends JPanel {
 	
 	private int currentX, currentY;
 	BufferedImage muteButton = ImageLoader.load("mutebutton.png");
-	
+	BufferedImage muteButtonLine = ImageLoader.load("muteButtonLine.png");
 	/*
 	 * The JPanel and various important class instances are setup here
 	 */
@@ -178,10 +178,12 @@ public class GamePanel extends JPanel {
 	public void draw() {
 		screenManager.draw(graphicsHandler);
 		
-		//graphicsHandler.drawImage(muteButton,0,0);
-		graphicsHandler.drawImage(muteButton, 0, 0, 50, 50);
-		
+	if(sound.getSoundHolder()) {
+	graphicsHandler.drawImage(muteButton, 0, 0, 50, 50);
+	}else {
+	graphicsHandler.drawImage(muteButtonLine, 0, 0, 50, 50);
 	}
+}
 	
 
 
