@@ -454,7 +454,9 @@ public abstract class Player extends GameObject {
 			} else if (mapEntity instanceof MapTile) {
 				MapTile mapTile = (MapTile) mapEntity;
 				if (mapTile.getTileType() == TileType.KILLER) {
-					makeSound(bubbleSound);
+					//makeSound(bubbleSound);
+					
+					levelState = LevelState.PLAYER_DEAD; //changed
 				}
 			}
 		}
