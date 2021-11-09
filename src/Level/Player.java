@@ -124,6 +124,11 @@ public abstract class Player extends GameObject {
 		else if (levelState == LevelState.PLAYER_DEAD) {
 			updatePlayerDead();
 		}
+		
+		// remove players fireball if it expires
+		if (currentFireball != null && currentFireball.getMapEntityStatus() == MapEntityStatus.REMOVED) {
+			currentFireball = null;
+		}
 	}
 
 	// add gravity to player, which is a downward force
@@ -453,10 +458,16 @@ public abstract class Player extends GameObject {
 			} else if (mapEntity instanceof MapTile) {
 				MapTile mapTile = (MapTile) mapEntity;
 				if (mapTile.getTileType() == TileType.KILLER) {
+
 					//checking to see if sound is true
 					if(GamePanel.sound.getSoundHolder()) {
 					makeSound(bubbleSound);
 					}
+
+					//makeSound(bubbleSound);
+					
+					levelState = LevelState.PLAYER_DEAD; //changed
+
 				}
 			}
 		}
