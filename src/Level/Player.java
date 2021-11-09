@@ -93,6 +93,7 @@ public abstract class Player extends GameObject {
 
 			// update player's state and current actions, which includes things like
 			// determining how much it should move each frame and if its walking or jumping
+			keyLocker.unlockKey(SHOOT_KEY);
 			do {
 				previousPlayerState = playerState;
 				handlePlayerState();
@@ -131,21 +132,11 @@ public abstract class Player extends GameObject {
 	// method
 	protected void handlePlayerState() {
 		switch (playerState) {
-		case STANDING:
-			playerStanding();
-			break;
-		case WALKING:
-			playerWalking();
-			break;
-		case CROUCHING:
-			playerCrouching();
-			break;
-		case JUMPING:
-			playerJumping();
-			break;
-		case SHOOTING:
-			playerShooting();
-			break;
+			case STANDING -> playerStanding();
+			case WALKING -> playerWalking();
+			case CROUCHING -> playerCrouching();
+			case JUMPING -> playerJumping();
+			case SHOOTING -> playerShooting();
 		}
 	}
 
@@ -157,7 +148,9 @@ public abstract class Player extends GameObject {
 		// if walk left or walk right key is pressed, player enters WALKING state
 		if (Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(LEFT_ALT)
 				|| Keyboard.isKeyDown(RIGHT_ALT)) {
-			playerState = PlayerState.WALKING;
+			if (!((Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(LEFT_ALT)) && (Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(RIGHT_ALT)))) {
+				playerState = PlayerState.WALKING;
+			}
 		}
 
 		// if jump key is pressed, player enters JUMPING state
@@ -177,11 +170,8 @@ public abstract class Player extends GameObject {
 		}
 
 		// if spacebar pressed, shoot fireball
-		else if (Keyboard.isKeyDown(SHOOT_KEY) && hasPowerUp) {
-			playerState = PlayerState.SHOOTING;
-		}
 
-		if (Keyboard.isKeyDown(SHOOT_KEY) && hasPowerUp) {
+		if (Keyboard.isKeyDown(SHOOT_KEY) && hasPowerUp && !keyLocker.isKeyLocked(SHOOT_KEY)) {
 			keyLocker.lockKey(SHOOT_KEY);
 			playerState = PlayerState.SHOOTING;
 		}
@@ -260,9 +250,13 @@ public abstract class Player extends GameObject {
 		}
 
 		// if shoot key is pressed, enter SHOOTING state
-		if (Keyboard.isKeyDown(SHOOT_KEY) && hasPowerUp) {
+		if (Keyboard.isKeyDown(SHOOT_KEY) && hasPowerUp && !keyLocker.isKeyLocked(SHOOT_KEY)) {
 			keyLocker.lockKey(SHOOT_KEY);
 			playerState = PlayerState.SHOOTING;
+		}
+
+		if((Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(LEFT_ALT)) && (Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(RIGHT_ALT))) {
+			playerState = PlayerState.STANDING;
 		}
 	}
 
@@ -381,21 +375,23 @@ public abstract class Player extends GameObject {
 
 				// define where fireball will spawn on the map (y location) relative to dinosaur
 				// enemy's location
-				int fireballY = Math.round(getY()) + 10;
+				int fireballY = Math.round(getY()) + 15;
 
 				// create Fireball
 				FriendlyFire fireball = new FriendlyFire(new Point(fireballX, fireballY), movementSpeed, 1000);
 				currentFireball = fireball;
 
 				// add fireball enemy to the map for it to offically spawn in the level
-				if (hasPowerUp == true) {
-					map.addEnemy(fireball);
-				}
+				if (hasPowerUp) map.addEnemy(fireball);
 				// change dinosaur back to its WALK state after shooting, reset shootTimer to
 				// wait another 2 seconds before shooting again
-				playerState = PlayerState.WALKING;
+				if(previousPlayerState == PlayerState.STANDING) {
+					playerState = PlayerState.STANDING;
+				} else {
+					playerState = PlayerState.WALKING;
+				}
 			}
-			previousPlayerState = playerState;
+//			previousPlayerState = playerState;
 		}
 	}
 

@@ -100,11 +100,11 @@ public class BugEnemy extends Enemy {
             put("WALK_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0), 100)
                             .withScale(3) //2
-                            .withBounds(6, 6, 12, 7)
+                            .withBounds(2, 6, 15, 8)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(0, 1), 100)
                             .withScale(3) //2
-                            .withBounds(6, 6, 12, 7)
+                            .withBounds(2, 6, 15, 8)
                             .build()
             });
 
@@ -112,12 +112,12 @@ public class BugEnemy extends Enemy {
                     new FrameBuilder(spriteSheet.getSprite(0, 0), 100)
                             .withScale(3) //2
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(6, 6, 12, 7)
+                            .withBounds(2, 6, 15, 8)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(0, 1), 100)
                             .withScale(3) //2
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(6, 6, 12, 7)
+                            .withBounds(2, 6, 15, 8)
                             .build()
             });
         }};
