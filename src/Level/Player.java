@@ -42,6 +42,7 @@ public abstract class Player extends GameObject {
 	// values used to keep track of player's current state
 	protected PlayerState playerState;
 	protected PlayerState previousPlayerState;
+	protected PlayerState returnState;
 	protected Direction facingDirection;
 	protected AirGroundState airGroundState;
 	protected AirGroundState previousAirGroundState;
@@ -78,6 +79,7 @@ public abstract class Player extends GameObject {
 		previousAirGroundState = airGroundState;
 		playerState = PlayerState.STANDING;
 		previousPlayerState = playerState;
+		returnState = playerState;
 		levelState = LevelState.RUNNING;
 		currentFireball = null;
 		
@@ -93,8 +95,7 @@ public abstract class Player extends GameObject {
 
 			// update player's state and current actions, which includes things like
 			// determining how much it should move each frame and if its walking or jumping
-			keyLocker.unlockKey(SHOOT_KEY);
-			do {
+			do {	
 				previousPlayerState = playerState;
 				handlePlayerState();
 			} while (previousPlayerState != playerState);
@@ -180,6 +181,9 @@ public abstract class Player extends GameObject {
 			keyLocker.lockKey(SHOOT_KEY);
 			playerState = PlayerState.SHOOTING;
 		}
+		
+		// update return state to fall back to after shooting
+		returnState = PlayerState.STANDING;
 	}
 
 	// player WALKING state logic
@@ -263,6 +267,9 @@ public abstract class Player extends GameObject {
 		if((Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(LEFT_ALT)) && (Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(RIGHT_ALT))) {
 			playerState = PlayerState.STANDING;
 		}
+		
+		// update return state to fall back to after shooting
+		returnState = PlayerState.WALKING;
 	}
 
 	// player CROUCHING state logic
@@ -396,6 +403,8 @@ public abstract class Player extends GameObject {
 					playerState = PlayerState.WALKING;
 				}
 			}
+			playerState = returnState;
+			previousPlayerState = PlayerState.SHOOTING;
 //			previousPlayerState = playerState;
 		}
 	}
@@ -404,7 +413,8 @@ public abstract class Player extends GameObject {
 		if (Keyboard.isKeyUp(JUMP_KEY) || Keyboard.isKeyUp(JUMP_ALT)) {
 			keyLocker.unlockKey(JUMP_KEY);
 			keyLocker.unlockKey(JUMP_ALT);
-		} else if (Keyboard.isKeyUp(SHOOT_KEY)) {
+		} 
+		if (Keyboard.isKeyUp(SHOOT_KEY)) {
 			keyLocker.unlockKey(SHOOT_KEY);
 		}
 	}
