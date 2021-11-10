@@ -1,8 +1,10 @@
 package Level;
 
+import Engine.GamePanel;
 import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
+import Engine.SoundHolder;
 import GameObject.GameObject;
 import GameObject.IntersectableRectangle;
 import GameObject.SpriteSheet;
@@ -48,6 +50,7 @@ public abstract class Player extends GameObject {
 	protected AirGroundState previousAirGroundState;
 	protected LevelState levelState;
 	protected FriendlyFire currentFireball;
+	
 
 	// classes that listen to player events can be added to this list
 	protected ArrayList<PlayerListener> listeners = new ArrayList<>();
@@ -82,6 +85,7 @@ public abstract class Player extends GameObject {
 		returnState = playerState;
 		levelState = LevelState.RUNNING;
 		currentFireball = null;
+		
 		
 	}
 
@@ -460,9 +464,16 @@ public abstract class Player extends GameObject {
 			} else if (mapEntity instanceof MapTile) {
 				MapTile mapTile = (MapTile) mapEntity;
 				if (mapTile.getTileType() == TileType.KILLER) {
+
+					//checking to see if sound is true
+					if(GamePanel.sound.getSoundHolder()) {
+					makeSound(bubbleSound);
+					}
+
 					//makeSound(bubbleSound);
 					
 					levelState = LevelState.PLAYER_DEAD; //changed
+
 				}
 			}
 		}
@@ -473,7 +484,10 @@ public abstract class Player extends GameObject {
 			MapTile mapTile = (MapTile) mapEntity;
 			if (mapTile.getTileType() == TileType.POWER_UP && !hasPowerUp) {
 				hasPowerUp = true;
-				makeSound(powerUp);
+				//conditional checking to see if sound is true
+				if(GamePanel.sound.getSoundHolder()) {
+					makeSound(powerUp);
+				}
 			}
 		}
 	}

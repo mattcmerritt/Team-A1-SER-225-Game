@@ -4,7 +4,8 @@ import GameObject.Frame;
 import GameObject.ImageEffect;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
-
+import Engine.GamePanel;
+import Engine.SoundHolder;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +26,7 @@ public class Enemy extends MapEntity {
 	File vaporizedSound = new File("Resources/forceFieldSound.wav");
 
 	protected MapEntityStatus status;
-
+	
 	public Enemy(float x, float y, SpriteSheet spriteSheet, String startingAnimation) {
 		super(x, y, spriteSheet, startingAnimation);
 		status = super.getMapEntityStatus();
@@ -72,7 +73,9 @@ public class Enemy extends MapEntity {
 			touchedPlayer(player);
 		} else if (player.currentFireball != null) {
 			if (intersects(player.getFire())) {
+				if(GamePanel.sound.getSoundHolder()) {
 				makeSound(vaporizedSound);
+				}
 //				THIS ALWAYS RETURNS TRUE
 				this.setMapEntityStatus(MapEntityStatus.REMOVED);
 			}

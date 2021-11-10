@@ -14,10 +14,12 @@ import javax.sound.sampled.*;
 public class GameWindow {
 	private JFrame gameWindow;
 	private GamePanel gamePanel;
-
+	private static Clip music;
+	
 	public GameWindow() {
 		gameWindow = new JFrame("Game");
 		gamePanel = new GamePanel();
+		//creates sound holder
 		gamePanel.setFocusable(true);
 		gamePanel.requestFocusInWindow();
 		gameWindow.setContentPane(gamePanel);
@@ -27,13 +29,17 @@ public class GameWindow {
 		gameWindow.setVisible(true);
 		gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // it'd be nice if this actually worked more than 1/3rd of the time
 		gamePanel.setupGame();
+		
 		File soundFile = new File("Resources/backgroundMusic.wav");
 		
 		try {
 			AudioInputStream gameSound = AudioSystem.getAudioInputStream(soundFile);
-			Clip music = AudioSystem.getClip();
+			music = AudioSystem.getClip();
 			music.open(gameSound);
-			music.start();
+			//adds conditional if SoundHolder is true play music 
+			if(GamePanel.sound.getSoundHolder()) {
+				music.start();
+			}
 		} catch (UnsupportedAudioFileException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -43,6 +49,13 @@ public class GameWindow {
 		}
 	}
 
+	public static void updateMusic() {
+		if(GamePanel.sound.getSoundHolder()) {
+			music.start();
+		}else {
+			music.stop();
+		}
+	}
 	// triggers the game loop to start as defined in the GamePanel class
 	public void startGame() {
 		gamePanel.startGame();
