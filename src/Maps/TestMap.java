@@ -58,6 +58,11 @@ public class TestMap extends Map {
         	enemies.add(new BugEnemy(getPositionByTileIndex(7, 10), Direction.LEFT));
         	return enemies;
         } else if (mapFileName == "test_map_5.txt"){
+        	enemies.add(new BugEnemy(getPositionByTileIndex(31, 10), Direction.LEFT));
+        	enemies.add(new BugEnemy(getPositionByTileIndex(36, 10), Direction.LEFT));
+        	enemies.add(new BugEnemy(getPositionByTileIndex(40, 10), Direction.LEFT));
+        	enemies.add(new BugEnemy(getPositionByTileIndex(47, 10), Direction.LEFT));
+        	
         	return enemies;
         }  else {
         	return enemies;
@@ -148,10 +153,19 @@ public class TestMap extends Map {
         	enhancedMapTiles.add(new EndLevelBox(
                     getPositionByTileIndex(48, 9)
             ));
-            enhancedMapTiles.add(new HorizontalMovingPlatform(
+        	enhancedMapTiles.add(new HorizontalMovingPlatform(
                     ImageLoader.load("GreenPlatform.png"),
-                    getPositionByTileIndex(2, 10),
-                    getPositionByTileIndex(6, 10),
+                    getPositionByTileIndex(2, 8),
+                    getPositionByTileIndex(6, 8),
+                    TileType.NOT_PASSABLE,
+                    3,
+                    new Rectangle(0, 6,16,4),
+                    Direction.LEFT
+            ));
+        	enhancedMapTiles.add(new HorizontalMovingPlatform(
+                    ImageLoader.load("GreenPlatform.png"),
+                    getPositionByTileIndex(6, 8),
+                    getPositionByTileIndex(10, 8),
                     TileType.NOT_PASSABLE,
                     3,
                     new Rectangle(0, 6,16,4),
@@ -159,8 +173,8 @@ public class TestMap extends Map {
             ));
             enhancedMapTiles.add(new HorizontalMovingPlatform(
                     ImageLoader.load("GreenPlatform.png"),
-                    getPositionByTileIndex(8, 10),
-                    getPositionByTileIndex(13, 10),
+                    getPositionByTileIndex(10, 8),
+                    getPositionByTileIndex(14, 8),
                     TileType.NOT_PASSABLE,
                     3,
                     new Rectangle(0, 6,16,4),
@@ -168,8 +182,8 @@ public class TestMap extends Map {
             ));
             enhancedMapTiles.add(new HorizontalMovingPlatform(
                     ImageLoader.load("GreenPlatform.png"),
-                    getPositionByTileIndex(14, 10),
-                    getPositionByTileIndex(20, 10),
+                    getPositionByTileIndex(14, 8),
+                    getPositionByTileIndex(18, 8),
                     TileType.NOT_PASSABLE,
                     3,
                     new Rectangle(0, 6,16,4),
@@ -177,8 +191,8 @@ public class TestMap extends Map {
             ));
             enhancedMapTiles.add(new HorizontalMovingPlatform(
                     ImageLoader.load("GreenPlatform.png"),
-                    getPositionByTileIndex(21, 10),
-                    getPositionByTileIndex(23, 10),
+                    getPositionByTileIndex(18, 8),
+                    getPositionByTileIndex(21, 8),
                     TileType.NOT_PASSABLE,
                     3,
                     new Rectangle(0, 6,16,4),
@@ -186,8 +200,8 @@ public class TestMap extends Map {
             ));
             enhancedMapTiles.add(new HorizontalMovingPlatform(
                     ImageLoader.load("GreenPlatform.png"),
-                    getPositionByTileIndex(24, 10),
-                    getPositionByTileIndex(29, 10),
+                    getPositionByTileIndex(29, 8),
+                    getPositionByTileIndex(33, 8),
                     TileType.NOT_PASSABLE,
                     3,
                     new Rectangle(0, 6,16,4),
@@ -195,8 +209,17 @@ public class TestMap extends Map {
             ));
             enhancedMapTiles.add(new HorizontalMovingPlatform(
                     ImageLoader.load("GreenPlatform.png"),
-                    getPositionByTileIndex(30, 10),
-                    getPositionByTileIndex(34, 10),
+                    getPositionByTileIndex(33, 8),
+                    getPositionByTileIndex(37, 8),
+                    TileType.NOT_PASSABLE,
+                    3,
+                    new Rectangle(0, 6,16,4),
+                    Direction.LEFT
+            ));
+            enhancedMapTiles.add(new HorizontalMovingPlatform(
+                    ImageLoader.load("GreenPlatform.png"),
+                    getPositionByTileIndex(37, 8),
+                    getPositionByTileIndex(41, 8),
                     TileType.NOT_PASSABLE,
                     3,
                     new Rectangle(0, 6,16,4),
@@ -204,22 +227,14 @@ public class TestMap extends Map {
             ));
             enhancedMapTiles.add(new HorizontalMovingPlatform(
                     ImageLoader.load("GreenPlatform.png"),
-                    getPositionByTileIndex(35, 10),
-                    getPositionByTileIndex(40, 10),
+                    getPositionByTileIndex(41, 8),
+                    getPositionByTileIndex(45, 8),
                     TileType.NOT_PASSABLE,
                     3,
                     new Rectangle(0, 6,16,4),
                     Direction.LEFT
             ));
-            enhancedMapTiles.add(new HorizontalMovingPlatform(
-                    ImageLoader.load("GreenPlatform.png"),
-                    getPositionByTileIndex(41, 10),
-                    getPositionByTileIndex(48, 10),
-                    TileType.NOT_PASSABLE,
-                    3,
-                    new Rectangle(0, 6,16,4),
-                    Direction.LEFT
-            ));
+
             return enhancedMapTiles;
         } else if (mapFileName == "test_map_4.txt") {
         	enhancedMapTiles.add(new EndLevelBox(
