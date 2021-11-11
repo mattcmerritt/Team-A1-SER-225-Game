@@ -62,7 +62,7 @@ public class TestMap extends Map {
         	enemies.add(new BugEnemy(getPositionByTileIndex(36, 10), Direction.LEFT));
         	enemies.add(new BugEnemy(getPositionByTileIndex(40, 10), Direction.LEFT));
         	enemies.add(new BugEnemy(getPositionByTileIndex(47, 10), Direction.LEFT));
-        
+        	
         	return enemies;
         }  else {
         	return enemies;
