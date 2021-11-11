@@ -44,6 +44,7 @@ public abstract class Player extends GameObject {
 	// values used to keep track of player's current state
 	protected PlayerState playerState;
 	protected PlayerState previousPlayerState;
+	protected PlayerState returnState;
 	protected Direction facingDirection;
 	protected AirGroundState airGroundState;
 	protected AirGroundState previousAirGroundState;
@@ -81,6 +82,7 @@ public abstract class Player extends GameObject {
 		previousAirGroundState = airGroundState;
 		playerState = PlayerState.STANDING;
 		previousPlayerState = playerState;
+		returnState = playerState;
 		levelState = LevelState.RUNNING;
 		currentFireball = null;
 		
@@ -97,7 +99,7 @@ public abstract class Player extends GameObject {
 
 			// update player's state and current actions, which includes things like
 			// determining how much it should move each frame and if its walking or jumping
-			do {
+			do {	
 				previousPlayerState = playerState;
 				handlePlayerState();
 			} while (previousPlayerState != playerState);
@@ -140,21 +142,11 @@ public abstract class Player extends GameObject {
 	// method
 	protected void handlePlayerState() {
 		switch (playerState) {
-		case STANDING:
-			playerStanding();
-			break;
-		case WALKING:
-			playerWalking();
-			break;
-		case CROUCHING:
-			playerCrouching();
-			break;
-		case JUMPING:
-			playerJumping();
-			break;
-		case SHOOTING:
-			playerShooting();
-			break;
+			case STANDING -> playerStanding();
+			case WALKING -> playerWalking();
+			case CROUCHING -> playerCrouching();
+			case JUMPING -> playerJumping();
+			case SHOOTING -> playerShooting();
 		}
 	}
 
@@ -166,7 +158,9 @@ public abstract class Player extends GameObject {
 		// if walk left or walk right key is pressed, player enters WALKING state
 		if (Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(LEFT_ALT)
 				|| Keyboard.isKeyDown(RIGHT_ALT)) {
-			playerState = PlayerState.WALKING;
+			if (!((Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(LEFT_ALT)) && (Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(RIGHT_ALT)))) {
+				playerState = PlayerState.WALKING;
+			}
 		}
 
 		// if jump key is pressed, player enters JUMPING state
@@ -186,14 +180,14 @@ public abstract class Player extends GameObject {
 		}
 
 		// if spacebar pressed, shoot fireball
-		else if (Keyboard.isKeyDown(SHOOT_KEY) && hasPowerUp) {
-			playerState = PlayerState.SHOOTING;
-		}
 
-		if (Keyboard.isKeyDown(SHOOT_KEY) && hasPowerUp) {
+		if (Keyboard.isKeyDown(SHOOT_KEY) && hasPowerUp && !keyLocker.isKeyLocked(SHOOT_KEY)) {
 			keyLocker.lockKey(SHOOT_KEY);
 			playerState = PlayerState.SHOOTING;
 		}
+		
+		// update return state to fall back to after shooting
+		returnState = PlayerState.STANDING;
 	}
 
 	// player WALKING state logic
@@ -269,10 +263,17 @@ public abstract class Player extends GameObject {
 		}
 
 		// if shoot key is pressed, enter SHOOTING state
-		if (Keyboard.isKeyDown(SHOOT_KEY) && hasPowerUp) {
+		if (Keyboard.isKeyDown(SHOOT_KEY) && hasPowerUp && !keyLocker.isKeyLocked(SHOOT_KEY)) {
 			keyLocker.lockKey(SHOOT_KEY);
 			playerState = PlayerState.SHOOTING;
 		}
+
+		if((Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(LEFT_ALT)) && (Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(RIGHT_ALT))) {
+			playerState = PlayerState.STANDING;
+		}
+		
+		// update return state to fall back to after shooting
+		returnState = PlayerState.WALKING;
 	}
 
 	// player CROUCHING state logic
@@ -397,14 +398,18 @@ public abstract class Player extends GameObject {
 				currentFireball = fireball;
 
 				// add fireball enemy to the map for it to offically spawn in the level
-				if (hasPowerUp == true) {
-					map.addEnemy(fireball);
-				}
+				if (hasPowerUp) map.addEnemy(fireball);
 				// change dinosaur back to its WALK state after shooting, reset shootTimer to
 				// wait another 2 seconds before shooting again
-				playerState = PlayerState.WALKING;
+				if(previousPlayerState == PlayerState.STANDING) {
+					playerState = PlayerState.STANDING;
+				} else {
+					playerState = PlayerState.WALKING;
+				}
 			}
-			previousPlayerState = playerState;
+			playerState = returnState;
+			previousPlayerState = PlayerState.SHOOTING;
+//			previousPlayerState = playerState;
 		}
 	}
 
@@ -412,7 +417,8 @@ public abstract class Player extends GameObject {
 		if (Keyboard.isKeyUp(JUMP_KEY) || Keyboard.isKeyUp(JUMP_ALT)) {
 			keyLocker.unlockKey(JUMP_KEY);
 			keyLocker.unlockKey(JUMP_ALT);
-		} else if (Keyboard.isKeyUp(SHOOT_KEY)) {
+		} 
+		if (Keyboard.isKeyUp(SHOOT_KEY)) {
 			keyLocker.unlockKey(SHOOT_KEY);
 		}
 	}
