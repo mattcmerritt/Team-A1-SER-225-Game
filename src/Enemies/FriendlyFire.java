@@ -1,6 +1,7 @@
 package Enemies;
 
 import Builders.FrameBuilder;
+import Engine.GamePanel;
 import Engine.ImageLoader;
 import GameObject.Frame;
 import GameObject.SpriteSheet;
@@ -11,6 +12,7 @@ import Utils.Direction;
 import Utils.Point;
 import Utils.Stopwatch;
 
+import java.io.File;
 import java.util.HashMap;
 
 // This class is for the fireball enemy that the DinosaurEnemy class shoots out
@@ -19,6 +21,9 @@ import java.util.HashMap;
 public class FriendlyFire extends Enemy {
     private float movementSpeed;
     private Stopwatch existenceTimerFriend = new Stopwatch();
+    
+    // Sounds
+    File vaporizedSound = new File("Resources/forceFieldSound.wav");
 
     public FriendlyFire(Point location, float movementSpeed, int existenceTime) {
         super(location.x, location.y, new SpriteSheet(ImageLoader.load("forcefield.png"), 14, 14), "DEFAULT");
@@ -31,6 +36,10 @@ public class FriendlyFire extends Enemy {
         isRespawnable = false;
 
         initialize();
+        
+        if(GamePanel.sound.getSoundHolder()) {
+        	makeSound(vaporizedSound);
+		}
     }
 
     @Override
