@@ -64,7 +64,24 @@ public class TestMap extends Map {
         	enemies.add(new BugEnemy(getPositionByTileIndex(47, 10), Direction.LEFT));
         	
         	return enemies;
-        }  else {
+        }  
+        else if (mapFileName == "test_map_6.txt"){
+        	enemies.add(new BugEnemy(getPositionByTileIndex(38, 11), Direction.LEFT));
+        	enemies.add(new DinosaurEnemy(getPositionByTileIndex(41, 11).addY(2), getPositionByTileIndex(44, 11).addY(2), Direction.RIGHT));
+        	enemies.add(new BugEnemy(getPositionByTileIndex(48, 11), Direction.LEFT));
+
+        	return enemies;
+        }
+        else if (mapFileName == "test_map_7.txt"){
+        	enemies.add(new DinosaurEnemy(getPositionByTileIndex(10, 13).addY(2), getPositionByTileIndex(11, 13).addY(2), Direction.RIGHT));
+        	enemies.add(new BugEnemy(getPositionByTileIndex(20, 13), Direction.LEFT));
+        	enemies.add(new BugEnemy(getPositionByTileIndex(22, 13), Direction.LEFT));
+        	enemies.add(new BugEnemy(getPositionByTileIndex(24, 10), Direction.LEFT));
+        	enemies.add(new DinosaurEnemy(getPositionByTileIndex(45, 13).addY(2), getPositionByTileIndex(48, 13).addY(2), Direction.RIGHT));
+        	enemies.add(new DinosaurEnemy(getPositionByTileIndex(49, 13).addY(2), getPositionByTileIndex(51, 13).addY(2), Direction.RIGHT));
+        	
+        	return enemies;
+        }else {
         	return enemies;
         }
     }
@@ -313,7 +330,16 @@ public class TestMap extends Map {
                     Direction.LEFT
             ));
             return enhancedMapTiles;
-        } else {
+        }  
+        else if (mapFileName == "test_map_6.txt") {
+        	enhancedMapTiles.add(new EndLevelBox(getPositionByTileIndex(48, 5)));
+        	return enhancedMapTiles;
+        }
+        else if (mapFileName == "test_map_7.txt") {
+        	enhancedMapTiles.add(new EndLevelBox(getPositionByTileIndex(60, 4)));
+        	return enhancedMapTiles;
+        }
+        else {
         	return enhancedMapTiles;
         }
     }
