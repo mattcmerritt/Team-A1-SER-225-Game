@@ -6,6 +6,8 @@ import Maps.TestMap2;
 import Maps.TestMap3;
 import Maps.TestMap4;
 import Maps.TestMap5;
+import Maps.TestMap6;
+import Maps.TestMap7;
 import Maps.TitleScreenMap;
 
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ public class EditorMaps {
             add("TestMap3");
             add("TestMap4");
             add("TestMap5");
+            add("TestMap6");
+            add("TestMap7");
         }};
     }
 
@@ -36,6 +40,10 @@ public class EditorMaps {
             	return new TestMap4();
             case "TestMap5":
             	return new TestMap5();
+            case "TestMap6":
+            	return new TestMap6();
+            case "TestMap7":
+            	return new TestMap7();
             default:
                 throw new RuntimeException("Unrecognized map name");
         }
