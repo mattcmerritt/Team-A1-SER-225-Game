@@ -18,6 +18,7 @@ import java.util.HashMap;
 // it will disappear early if it collides with a solid map tile
 public class Fireball extends Enemy {
     private float movementSpeed;
+    
     private Stopwatch existenceTimer = new Stopwatch();
 
     public Fireball(Point location, float movementSpeed, int existenceTime) {

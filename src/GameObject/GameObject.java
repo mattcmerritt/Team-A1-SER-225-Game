@@ -2,6 +2,7 @@ package GameObject;
 
 import Builders.FrameBuilder;
 import Engine.GraphicsHandler;
+import Engine.LivesHolder;
 import Level.Map;
 import Level.MapTileCollisionHandler;
 import Utils.Direction;
@@ -29,7 +30,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 	4. performing proper draw logic based on camera movement
  */
 public class GameObject extends AnimatedSprite {
-
+	public static LivesHolder life = new LivesHolder();
 	// stores game object's start position
 	// important to keep track of this as it's what allows the special draw logic to work
 	protected float startPositionX, startPositionY;

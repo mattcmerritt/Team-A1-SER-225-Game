@@ -7,7 +7,7 @@ public abstract class Screen {
     public abstract void initialize();
     public abstract void update();
     public abstract void draw(GraphicsHandler graphicsHandler);
-    
+    public static LivesHolder life = new LivesHolder();
     public abstract void selectMenuOption(int option);
     public abstract void deselectMenuOption(int option);
 }
