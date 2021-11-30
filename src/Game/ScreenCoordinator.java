@@ -3,19 +3,17 @@ package Game;
 import Engine.DefaultScreen;
 import Engine.GraphicsHandler;
 import Engine.Screen;
-import Screens.CreditsScreen;
-import Screens.MenuScreen;
-import Screens.PlayLevelScreen;
-import Screens.InstructionsScreen;
+import Screens.*;
 
 /*
  * Based on the current game state, this class determines which Screen should be shown
  * There can only be one "currentScreen", although screens can have "nested" screens
  */
+
 public class ScreenCoordinator extends Screen {
 	// currently shown Screen
 	protected Screen currentScreen = new DefaultScreen();
-
+	protected static String levelname = "test_map.txt";
 	// keep track of gameState so ScreenCoordinator knows which Screen to show
 	protected static GameState gameState; 
 	protected GameState previousGameState;
@@ -46,13 +44,16 @@ public class ScreenCoordinator extends Screen {
 						currentScreen = new MenuScreen(this);
 						break;
 					case LEVEL:
-						currentScreen = new PlayLevelScreen(this);
+						currentScreen = new PlayLevelScreen(this, levelname);
 						break;
 					case CREDITS:
 						currentScreen = new CreditsScreen(this);
 						break;
 					case INSTRUCTIONS:
 						currentScreen = new InstructionsScreen(this);
+						break;
+					case LEVELSELECT:
+						currentScreen = new LevelSelectScreen(this);
 						break;
 				}
 				currentScreen.initialize();
@@ -82,5 +83,9 @@ public class ScreenCoordinator extends Screen {
 	public void deselectMenuOption(int option)
 	{
 		currentScreen.deselectMenuOption(option);
+	}
+	public void loadlevel(String level){
+		levelname = level;
+		setGameState(GameState.LEVEL);
 	}
 }

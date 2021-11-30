@@ -34,9 +34,10 @@ public class PlayLevelScreen extends Screen implements PlayerListener {
 	private final Key pauseKey = Key.P;
 	protected String fileName;
 
-    public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
+    public PlayLevelScreen(ScreenCoordinator screenCoordinator,String Level) {
         this.screenCoordinator = screenCoordinator;
-        fileName = "test_map.txt";
+        fileName = Level;
+
     }
 
     public void initialize() {
