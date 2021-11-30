@@ -47,6 +47,7 @@ public class LevelLoseScreen extends Screen {
              	
              } else if (Keyboard.isKeyDown(Key.ESC)) {
                  playLevelScreen.goBackToMenu();
+                 life.setLives();
              }
         }else if(life.getLives() == 0) {
         	instructions = new SpriteFont("Press Escape to go back to the main menu", 200, 300,"Comic Sans", 20, Color.white);
