@@ -72,7 +72,7 @@ public class Enemy extends MapEntity {
 		if (intersects(player)) {
 			touchedPlayer(player);
 		} else if (player.currentFireball != null) {
-			if (intersects(player.getFire())) {
+			if (intersects(player.getFire()) && this != player.currentFireball) {
 				if(GamePanel.sound.getSoundHolder()) {
 				makeSound(vaporizedSound);
 				}
