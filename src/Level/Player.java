@@ -385,7 +385,7 @@ public abstract class Player extends GameObject {
 					fireballX = Math.round(getX()) - 8 + getScaledWidth();
 					movementSpeed = 1.5f;
 				} else {
-					fireballX = Math.round(getX()) - 8;
+					fireballX = Math.round(getX()) + 38 - getScaledWidth(); //changed
 					movementSpeed = -1.5f;
 				}
 
