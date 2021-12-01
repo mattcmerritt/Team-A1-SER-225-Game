@@ -25,10 +25,12 @@ public class LevelSelectScreen extends Screen {
     protected SpriteFont Level5;
     protected SpriteFont Level6;
     protected SpriteFont Level7;
+    protected SpriteFont returnButton;
     protected Map background;
     protected Stopwatch keyTimer = new Stopwatch();
     protected int pointerLocationX, pointerLocationY;
     protected KeyLocker keyLocker = new KeyLocker();
+    protected SpriteFont titleLabel;
 
     public LevelSelectScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
@@ -36,6 +38,8 @@ public class LevelSelectScreen extends Screen {
 
 
     public void initialize() {
+    	titleLabel = new SpriteFont("Level Select", 65, 35, "Times New Roman", 30, Color.black);
+    	
         Level1 = new SpriteFont("Level 1", 40, 100, "Comic Sans", 30, new Color(49, 207, 240));
         Level1.setOutlineColor(Color.black);
         Level1.setOutlineThickness(3);
@@ -63,6 +67,10 @@ public class LevelSelectScreen extends Screen {
         Level7 = new SpriteFont("Level 7", 200, 300, "Comic Sans", 30, new Color(49, 207, 240));
         Level7.setOutlineColor(Color.black);
         Level7.setOutlineThickness(3);
+        
+        returnButton = new SpriteFont("RETURN TO MENU", 500, 560, "Comic Sans", 30, new Color(49, 207, 240));
+        returnButton.setOutlineColor(Color.black);
+        returnButton.setOutlineThickness(3);
 
         background = new TitleScreenMap();
         background.setAdjustCamera(false);
@@ -73,6 +81,7 @@ public class LevelSelectScreen extends Screen {
 
     public void draw(GraphicsHandler graphicsHandler) {
         background.draw(graphicsHandler);
+        titleLabel.draw(graphicsHandler);
         Level1.draw(graphicsHandler);
         Level2.draw(graphicsHandler);
         Level3.draw(graphicsHandler);
@@ -80,6 +89,7 @@ public class LevelSelectScreen extends Screen {
         Level5.draw(graphicsHandler);
         Level6.draw(graphicsHandler);
         Level7.draw(graphicsHandler);
+        returnButton.drawWithParsedNewLines(graphicsHandler);
         graphicsHandler.drawFilledRectangleWithBorder(pointerLocationX, pointerLocationY, 20, 20, new Color(49, 207, 240), Color.black, 2);
     }
 
@@ -88,15 +98,15 @@ public class LevelSelectScreen extends Screen {
     }
 
     // receive a selection from the mouse input
-
+    @Override
     public void selectMenuOption(int option) {
-        if (option >= 0 && option < 3) {
+        if (option >= 0 && option < 8) {
             currentMenuItemHovered = option;
         }
     }
 
     // additional unused method
-
+    @Override
     public void deselectMenuOption(int option) {
         // do nothing
     }
@@ -113,10 +123,10 @@ public class LevelSelectScreen extends Screen {
             keyTimer.reset();
             currentMenuItemHovered--;
         }
-        if (currentMenuItemHovered > 6) {
+        if (currentMenuItemHovered > 7) {
             currentMenuItemHovered = 0;
         } else if (currentMenuItemHovered < 0) {
-            currentMenuItemHovered = 6;
+            currentMenuItemHovered = 7;
         }
 
 
@@ -127,26 +137,40 @@ public class LevelSelectScreen extends Screen {
         Level5.setColor(new Color(41,207,240));
         Level6.setColor(new Color(41,207,240));
         Level7.setColor(new Color(41,207,240));
+        returnButton.setColor(new Color(41,207,240));
         if (currentMenuItemHovered == 0) {
             Level1.setColor(new Color (250,215,0));
-
-            pointerLocationX = 170;
-            pointerLocationY = 130;
+            pointerLocationX = 10;
+            pointerLocationY = 80;
         } else if (currentMenuItemHovered == 1) {
             Level2.setColor(new Color (250,215,0));
-            pointerLocationX = 170;
+            pointerLocationX = 10;
             pointerLocationY = 180;
         } else if (currentMenuItemHovered == 2){
             Level3.setColor(new Color (250,215,0));
+            pointerLocationX = 10;
+            pointerLocationY = 280;
         } else if (currentMenuItemHovered == 3){
             Level4.setColor(new Color (250,215,0));
+            pointerLocationX = 10;
+            pointerLocationY = 380;
         } else if (currentMenuItemHovered == 4){
             Level5.setColor(new Color (250,215,0));
+            pointerLocationX = 170;
+            pointerLocationY = 80;
         } else if (currentMenuItemHovered == 5){
             Level6.setColor(new Color (250,215,0));
+            pointerLocationX = 170;
+            pointerLocationY = 180;
         } else if (currentMenuItemHovered == 6){
             Level7.setColor(new Color (250,215,0));
-        }
+            pointerLocationX = 170;
+            pointerLocationY = 280;
+        } else if (currentMenuItemHovered == 7){
+            returnButton.setColor(new Color (250,215,0));
+            pointerLocationX = 470;
+            pointerLocationY = 540;
+        } 
         if (Keyboard.isKeyUp(Key.ENTER)) {
             keyLocker.unlockKey(Key.ENTER);
         }
@@ -167,6 +191,8 @@ public class LevelSelectScreen extends Screen {
                 screenCoordinator.loadlevel("test_map_6.txt");
             }else if (currentMenuItemHovered == 6) {
                 screenCoordinator.loadlevel("test_map_7.txt");
+            }else if (currentMenuItemHovered == 7) {
+                ScreenCoordinator.setGameState(GameState.MENU);
             }
 
         }

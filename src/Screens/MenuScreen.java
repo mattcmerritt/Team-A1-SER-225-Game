@@ -99,7 +99,7 @@ public class MenuScreen extends Screen {
             levelselect.setColor(new Color(255, 215, 0));
             instructions.setColor(new Color(49,207,240));
             pointerLocationX = 170;
-            pointerLocationY = 230;
+            pointerLocationY = 280;
         }
 
         // if space is pressed on menu item, change to appropriate screen based on which menu item was chosen
@@ -139,7 +139,7 @@ public class MenuScreen extends Screen {
   	@Override
   	public void selectMenuOption(int option)
   	{
-  		if (option >= 0 && option < 3)
+  		if (option >= 0 && option < 4)
   		{
   			currentMenuItemHovered = option;
   		}

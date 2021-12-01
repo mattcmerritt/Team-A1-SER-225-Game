@@ -57,6 +57,7 @@ public class GamePanel extends JPanel {
 				
 				if (ScreenCoordinator.getGameState() == GameState.MENU) {
 					if (currentX >= 200 && currentX <= 372 && currentY <= 150 && currentY >= 130) {
+						ScreenCoordinator.setLevel("test_map.txt"); // reset the level to the first one
 						ScreenCoordinator.setGameState(GameState.LEVEL);
 					} 
 					else if (currentX >= 200 && currentX <= 425 && currentY <= 200 && currentY >= 180) {
@@ -64,6 +65,9 @@ public class GamePanel extends JPanel {
 					}
 					else if (currentX >= 200 && currentX <= 331 && currentY <= 250 && currentY >= 220) {
 						ScreenCoordinator.setGameState(GameState.CREDITS);
+					}
+					else if (currentX >= 200 && currentX <= 425 && currentY <= 300 && currentY >= 280) {
+						ScreenCoordinator.setGameState(GameState.LEVELSELECT);
 					}
 				} 
 				else if(ScreenCoordinator.getGameState() == GameState.INSTRUCTIONS) {
@@ -76,10 +80,43 @@ public class GamePanel extends JPanel {
 						ScreenCoordinator.setGameState(GameState.MENU);
 					} 
 				}
+				else if (ScreenCoordinator.getGameState() == GameState.LEVELSELECT) {
+					if (currentX >= 40 && currentX <= 120 && currentY >= 70 && currentY <= 100) {
+						ScreenCoordinator.setLevel("test_map.txt");
+						ScreenCoordinator.setGameState(GameState.LEVEL);
+					}
+					else if (currentX >= 40 && currentX <= 120 && currentY >= 170 && currentY <= 200) {
+						ScreenCoordinator.setLevel("test_map_2.txt");
+						ScreenCoordinator.setGameState(GameState.LEVEL);
+					}
+					else if (currentX >= 40 && currentX <= 120 && currentY >= 270 && currentY <= 300) {
+						ScreenCoordinator.setLevel("test_map_3.txt");
+						ScreenCoordinator.setGameState(GameState.LEVEL);
+					}
+					else if (currentX >= 40 && currentX <= 120 && currentY >= 370 && currentY <= 400) {
+						ScreenCoordinator.setLevel("test_map_4.txt");
+						ScreenCoordinator.setGameState(GameState.LEVEL);
+					}
+					else if (currentX >= 200 && currentX <= 280 && currentY >= 70 && currentY <= 100) {
+						ScreenCoordinator.setLevel("test_map_5.txt");
+						ScreenCoordinator.setGameState(GameState.LEVEL);
+					}
+					else if (currentX >= 200 && currentX <= 280 && currentY >= 170 && currentY <= 200) {
+						ScreenCoordinator.setLevel("test_map_6.txt");
+						ScreenCoordinator.setGameState(GameState.LEVEL);
+					}
+					else if (currentX >= 200 && currentX <= 280 && currentY >= 270 && currentY <= 300) {
+						ScreenCoordinator.setLevel("test_map_7.txt");
+						ScreenCoordinator.setGameState(GameState.LEVEL);
+					}
+					else if (currentX >= 500 && currentY >= 520 && currentX <= 780 && currentY <= 560) {
+						ScreenCoordinator.setGameState(GameState.MENU);
+					}
+				}
 				
 				//if statement that checks to see if the user has clicked on the mute button, applies for all screens
 				if(currentX <= 50 && currentX >= 0 && currentY <= 50 && currentY >= 0) {
-					sound.setSoundHolder(!sound.getSoundHolder()); 
+					sound.setSoundHolder(!sound.getSoundHolder());
 				}
 			}
 			
@@ -103,6 +140,9 @@ public class GamePanel extends JPanel {
 					else if (currentX >= 200 && currentX <= 331 && currentY <= 250 && currentY >= 220) {
 						screenManager.selectMenuOption(2);
 					}
+					else if (currentX >= 200 && currentX <= 425 && currentY <= 300 && currentY >= 280) {
+						screenManager.selectMenuOption(3);
+					}
 				} 
 				else if (ScreenCoordinator.getGameState() == GameState.INSTRUCTIONS) {
 					if (currentX >= 500 && currentY >= 520 && currentX <= 780 && currentY <= 560) {
@@ -119,6 +159,32 @@ public class GamePanel extends JPanel {
 					else {
 						screenManager.deselectMenuOption(0);
 					} 
+				}
+				else if (ScreenCoordinator.getGameState() == GameState.LEVELSELECT) {
+					if (currentX >= 40 && currentX <= 120 && currentY >= 70 && currentY <= 100) {
+						screenManager.selectMenuOption(0);
+					}
+					else if (currentX >= 40 && currentX <= 120 && currentY >= 170 && currentY <= 200) {
+						screenManager.selectMenuOption(1);
+					}
+					else if (currentX >= 40 && currentX <= 120 && currentY >= 270 && currentY <= 300) {
+						screenManager.selectMenuOption(2);
+					}
+					else if (currentX >= 40 && currentX <= 120 && currentY >= 370 && currentY <= 400) {
+						screenManager.selectMenuOption(3);
+					}
+					else if (currentX >= 200 && currentX <= 280 && currentY >= 70 && currentY <= 100) {
+						screenManager.selectMenuOption(4);
+					}
+					else if (currentX >= 200 && currentX <= 280 && currentY >= 170 && currentY <= 200) {
+						screenManager.selectMenuOption(5);
+					}
+					else if (currentX >= 200 && currentX <= 280 && currentY >= 270 && currentY <= 300) {
+						screenManager.selectMenuOption(6);
+					}
+					else if (currentX >= 500 && currentY >= 520 && currentX <= 780 && currentY <= 560) {
+						screenManager.selectMenuOption(7);
+					}
 				}
 			}
 		});

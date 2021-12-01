@@ -84,8 +84,13 @@ public class ScreenCoordinator extends Screen {
 	{
 		currentScreen.deselectMenuOption(option);
 	}
+	
 	public void loadlevel(String level){
 		levelname = level;
 		setGameState(GameState.LEVEL);
+	}
+	
+	public static void setLevel(String level) {
+		levelname = level;
 	}
 }
