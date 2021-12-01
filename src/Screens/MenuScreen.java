@@ -109,6 +109,7 @@ public class MenuScreen extends Screen {
         if (!keyLocker.isKeyLocked(Key.ENTER) && Keyboard.isKeyDown(Key.ENTER)) {
             menuItemSelected = currentMenuItemHovered;
             if (menuItemSelected == 0) {
+            	screenCoordinator.setLevel("test_map.txt"); // reset to first level
                 screenCoordinator.setGameState(GameState.LEVEL);
             }
             else if(menuItemSelected == 1) {
