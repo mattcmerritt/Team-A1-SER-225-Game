@@ -9,9 +9,8 @@ import GameObject.Rectangle;
  * and then that class can handle coordinating which Screen to show.
  */
 public class ScreenManager {
-    private Screen currentScreen;
+    public Screen currentScreen;
     private static Rectangle screenBounds = new Rectangle(0, 0, 0, 0);
-
     public void initialize(Rectangle screenBounds) {
         ScreenManager.screenBounds = screenBounds;
         setCurrentScreen(new DefaultScreen());
@@ -23,6 +22,7 @@ public class ScreenManager {
         this.currentScreen = screen;
     }
 
+    
     public void update() {
         currentScreen.update();
     }

@@ -41,6 +41,7 @@ public class GamePanel extends JPanel {
 	private int currentX, currentY;
 	BufferedImage muteButton = ImageLoader.load("mutebutton.png");
 	BufferedImage muteButtonLine = ImageLoader.load("muteButtonLine.png");
+	BufferedImage lives = ImageLoader.load("lives.png");
 	/*
 	 * The JPanel and various important class instances are setup here
 	 */
@@ -166,7 +167,6 @@ public class GamePanel extends JPanel {
 			if(Keyboard.isKeyDown(MUTE_BUTTON) && !keyLocker.isKeyLocked(MUTE_BUTTON)) {
 				keyLocker.lockKey(MUTE_BUTTON);
 				sound.setSoundHolder(!sound.getSoundHolder());
-				//System.out.println(sound.getSoundHolder());
 			}
 			if(!Keyboard.isKeyDown(MUTE_BUTTON)) {
 				keyLocker.unlockKey(MUTE_BUTTON);
@@ -183,6 +183,22 @@ public class GamePanel extends JPanel {
 	}else {
 	graphicsHandler.drawImage(muteButtonLine, 0, 0, 50, 50);
 	}
+	
+	
+	
+	if(screenManager.currentScreen.life.getLives() == 3  && ScreenCoordinator.getGameState() == GameState.LEVEL) {
+		graphicsHandler.drawImage(lives, 700, 20,20,20);
+		graphicsHandler.drawImage(lives, 730,20,20,20);
+		graphicsHandler.drawImage(lives, 760,20,20,20);
+	}else if(screenManager.currentScreen.life.getLives() == 2 && ScreenCoordinator.getGameState() == GameState.LEVEL) {
+		graphicsHandler.drawImage(lives, 700, 20,20,20);
+		graphicsHandler.drawImage(lives, 730,20,20,20);
+	}else if (screenManager.currentScreen.life.getLives() == 1 && ScreenCoordinator.getGameState() == GameState.LEVEL){
+		graphicsHandler.drawImage(lives, 730,20,20,20);
+	}else {
+		//no lives drawn
+	}
+	
 }
 	
 

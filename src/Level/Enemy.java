@@ -5,6 +5,7 @@ import GameObject.ImageEffect;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
 import Engine.GamePanel;
+import Engine.LivesHolder;
 import Engine.SoundHolder;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -21,7 +22,6 @@ import Enemies.FriendlyFire;
 
 // This class is a base class for all enemies in the game -- all enemies should extend from it
 public class Enemy extends MapEntity {
-	
 	//Sound Effects
 	File vaporizedSound = new File("Resources/forceFieldSound.wav");
 
