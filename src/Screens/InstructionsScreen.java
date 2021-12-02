@@ -32,7 +32,7 @@ public class InstructionsScreen extends Screen {
         background = new TitleScreenMap();
         background.setAdjustCamera(false);
 
-        instructionsLabel = new SpriteFont("Instructions", 15, 35, "Times New Roman", 30, Color.black);
+        instructionsLabel = new SpriteFont("Instructions", 65, 35, "Times New Roman", 30, Color.black);
        // beginningSentenceLabel = new SpriteFont("The instructions for this game are:", 130, 140, "Times New Roman", 20, Color.white);
         actualInstructionsLabel = new SpriteFont("Goal: reach the ball of yarn at the right of the level \nwithout touching any enemies or falling off the map \n\nControls:\nUse the up arrow key and/or W key to jump \nUse the down arrow key and/or S key to duck"
         		+ "\nUse the left arrow key and/or A key to move left \nUse the right arrow key and/or D key to move right "
