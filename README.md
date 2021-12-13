@@ -1,9 +1,12 @@
-# SER-225-Game
+# Team-A1-SER-225-Game
 
 ## What is this?
 This is a game created for Quinnipiac's SER225 Agile Development class.
 Students will be paired up in teams for an entire semester, and will use agile development sprints to work further on this game.
 This usually involves adding features and fixing bugs (I'm sure there are bugs...)
+
+## How to install the game?
+Installation instructions can be found in the `TeamResources` directory in the `InstallationInstructions.docx` document. Additional information about the structure of the project can be found in the `ProjectStructure.docx` document.
 
 ## How to run this project?
 I used no external libraries for this, so you can clone this repo as is and run it out of the box.
